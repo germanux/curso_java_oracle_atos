@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <display-name>Primer servlet</display-name>
+    <description>Ejemplo de servlet</description>
+    <servlet>
+        <servlet-name>HolaServlet</servlet-name>
+        <servlet-class>com.webservlet.HolaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ParamServlet</servlet-name>
+        <servlet-class>com.webservlet.ParamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>com.registro.Registro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.registro.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HolaServlet</servlet-name>
+        <url-pattern>/hola</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ParamServlet</servlet-name>
+        <url-pattern>/param</url-pattern>
+    </servlet-mapping>
+    <servlet-mappingg>
+        <servlet-name>HolaServlet</servlet-name>
+        <url-pattern>/hola</url-pattern>
+    </servlet-mappingg>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+</web-app>
