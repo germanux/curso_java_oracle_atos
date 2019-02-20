@@ -12,7 +12,8 @@
         <title>Scriptlet de JSP</title>
     </head>
     <body>
-        <h1>Scriptlet de JSP</h1>
+        <%@ include file="cabecera.jsp" %>
+        <%= dameTitulo("Scriptlet de JSP") %> 
         <%
             int numero = 7, factorial = 1;
             for (int i = numero; i > 1; i--) {

@@ -12,7 +12,8 @@
         <title>Tablas de multiplicar</title>
     </head>
     <body>
-        <h1>Tablas de multiplicar</h1>
+        <%@ include file="cabecera.jsp" %>
+        <%= dameTitulo("Tablas de multiplicar") %> 
         <%! 
         // Declaraciones
         int i, n;
