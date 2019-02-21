@@ -14,7 +14,13 @@ import modelo.Persona;
 public class GestionPersona {
     // Lista, HashMap
     private Persona persona;
-    
+
+    private static GestionPersona instancia;
+    private GestionPersona() { }    
+    GestionPersona getInstancia() {
+        if (instancia == null) instancia = new GestionPersona();
+        return instancia;
+    }    
     public enum TipoResultado {OK, SIN_VALORES, EDAD_MAL};
     
     public boolean validarDatosPersona(String nombre, String edad) {
@@ -33,7 +39,7 @@ public class GestionPersona {
                 return TipoResultado.EDAD_MAL;
             }
         } else {
-                return TipoResultado.SIN_VALORES;
+            return TipoResultado.SIN_VALORES;
         }
     }
     public Persona getPersona() {

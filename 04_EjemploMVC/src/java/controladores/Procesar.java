@@ -32,6 +32,7 @@ public class Procesar extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String edad = request.getParameter("edad");
         
+        
         if (nombre.equals("") || edad.equals(""))
         {
             request.getRequestDispatcher("errorcampos.jsp").forward(request, response);
