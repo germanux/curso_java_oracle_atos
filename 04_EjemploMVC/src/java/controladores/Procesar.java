@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Persona;
+import modelo.logica.GestionPersona;
 
 /**
  *
@@ -32,20 +33,23 @@ public class Procesar extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String edad = request.getParameter("edad");
         
-        
-        if (nombre.equals("") || edad.equals(""))
-        {
-            request.getRequestDispatcher("errorcampos.jsp").forward(request, response);
-        } else {
-            int iEdad = 0;
-            try {
-                iEdad = Integer.parseInt(edad);
-            } catch (NumberFormatException ex) {
+        GestionPersona.TipoResultado resultado;
+        resultado = GestionPersona.getInstancia().guardarPersona(nombre, edad);
+        switch (resultado) {
+            case OK:
+                request.getSession().setAttribute("persona1", 
+                        GestionPersona.getInstancia().getPersona());
+                request.getRequestDispatcher("exito.jsp").forward(request, response);
+                break;
+            case SIN_VALORES:
+                request.getRequestDispatcher("errorcampos.jsp").forward(request, response);
+                break;
+            case EDAD_MAL:
                 request.getRequestDispatcher("errornumero.jsp").forward(request, response);
-            }
-            Persona p1 = new Persona(nombre, iEdad);            
-            request.getSession().setAttribute("persona1", p1);
-            request.getRequestDispatcher("exito.jsp").forward(request, response);
+                break;
+            case ERR_IO:
+                request.getRequestDispatcher("errorio.jsp").forward(request, response);
+                break;
         }
     }
     /**

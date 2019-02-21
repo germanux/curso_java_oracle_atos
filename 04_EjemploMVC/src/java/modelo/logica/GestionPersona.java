@@ -6,6 +6,7 @@
 package modelo.logica;
 
 import modelo.Persona;
+import modelo.persistencia.FicheroPersona;
 
 /**
  *
@@ -13,28 +14,30 @@ import modelo.Persona;
  */
 public class GestionPersona {
     // Lista, HashMap
-    private Persona persona;
+    // private Persona persona;
 
     private static GestionPersona instancia;
     private GestionPersona() { }    
-    GestionPersona getInstancia() {
+    public static GestionPersona getInstancia() {
         if (instancia == null) instancia = new GestionPersona();
         return instancia;
-    }    
-    public enum TipoResultado {OK, SIN_VALORES, EDAD_MAL};
-    
-    public boolean validarDatosPersona(String nombre, String edad) {
-        return nombre.equals("") || edad.equals("");
     }
-    public boolean validarEdad(String edad) {
-       return edad.matches("^[0-9]+$");
+    public enum TipoResultado {OK, SIN_VALORES, EDAD_MAL, ERR_IO};
+    
+    private boolean validarDatosPersona(String nombre, String edad) {
+        return ! nombre.isEmpty() && ! edad.isEmpty();
+    }
+    private boolean validarEdad(String edad) {
+       return edad.matches("^[1-9][0-9]*$");
     }
     public TipoResultado guardarPersona(String nombre, String edad) {
         if (validarDatosPersona(nombre, edad)) {
             if (validarEdad(edad)) {
                 int iEdad = Integer.parseInt(edad);
-                this.persona = new Persona(nombre, iEdad);
-                return TipoResultado.OK;
+                if (FicheroPersona.guardarPersona(new Persona(nombre, iEdad)))
+                    return TipoResultado.OK;
+                else
+                    return TipoResultado.ERR_IO;
             } else {
                 return TipoResultado.EDAD_MAL;
             }
@@ -43,6 +46,6 @@ public class GestionPersona {
         }
     }
     public Persona getPersona() {
-        return persona;
+        return FicheroPersona.leerPersona();
     }
 }
