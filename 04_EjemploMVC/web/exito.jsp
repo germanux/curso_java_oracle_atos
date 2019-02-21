@@ -3,9 +3,11 @@
     Created on : 21-feb-2019, 10:07:24
     Author     : USUARIO
 --%>
+<%@page import="modelo.logica.GestionPersona"%>
 <%@page import="modelo.Persona"%>
 <%
-    Persona p1 = (Persona) session.getAttribute("persona1");
+    // Persona p1 = (Persona) session.getAttribute("persona1");
+    Persona p1 = GestionPersona.getInstancia().getPersona();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

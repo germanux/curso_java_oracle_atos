@@ -10,15 +10,21 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import modelo.Persona;
+import modelo.logica.IPersonaDAO;
 
 /**
  *
  * @author USUARIO
  */
-public class FicheroPersona {
+public class FicheroPersona implements IPersonaDAO {
     public static final String FICH = "C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\curso_java_oracle_atos.git\\04_EjemploMVC\\persona.dat";
     
-    public static boolean guardarPersona(Persona persona) {
+    private static final FicheroPersona instancia = new FicheroPersona();
+    private FicheroPersona() { }
+    public static FicheroPersona getInstancia() { return instancia; }
+    
+    @Override
+    public boolean guardarPersona(Persona persona) {
         try {
             ObjectOutputStream escribFich = new ObjectOutputStream(
                     new FileOutputStream(FICH ));
@@ -29,7 +35,8 @@ public class FicheroPersona {
             return false;
         }
     }
-    public static Persona leerPersona() {
+    @Override
+    public Persona leerPersona() {
         try {
             ObjectInputStream leyendoFich = new ObjectInputStream(
                     new FileInputStream(FICH));
