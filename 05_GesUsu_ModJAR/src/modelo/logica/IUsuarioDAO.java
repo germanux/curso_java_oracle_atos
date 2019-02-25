@@ -15,7 +15,7 @@ import modelo.Usuario;
 public interface IUsuarioDAO {
     boolean crear(Usuario usuario);
     ArrayList<Usuario> obtenerTodos();
-    Usuario obtenerUno(Long id);
+    Usuario obtenerUno(Integer id);
     Usuario obtenerUno(String email);
     boolean eliminar(String email);
     boolean modificar(Usuario usuario);

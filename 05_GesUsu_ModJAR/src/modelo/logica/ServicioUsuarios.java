@@ -48,11 +48,11 @@ public class ServicioUsuarios {
         }
     }
     public ArrayList<Usuario> listar() {
-        return persistencia.listar();
+        return persistencia.obtenerTodos();
     }
 
     public Usuario validacionPasswd(String email, String passwd) {
-        ArrayList<Usuario> todosUsuarios = persistencia.listar();
+        ArrayList<Usuario> todosUsuarios = persistencia.obtenerTodos();
         for (Usuario usuario : todosUsuarios) {
             if (usuario.getEmail().equals(email) && usuario.getPassword().equals(passwd)) {
                 return usuario;
