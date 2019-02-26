@@ -4,23 +4,29 @@
     Author     : IEUser
 --%>
 <%@include file="head.jsp" %>
+<%! ArrayList<Usuario> todosUsuarios; %>
+<% todosUsuarios = ServicioUsuarios.getInstancia().obtenerTodos(); %>
 <html>
     <%= head() %>
     <body>
         <%@include file="header.jsp" %>
         <h1>Todos los usuarios</h1>
         <div border="2">            
-                <form action="usuarios.do" method="post" name="">                 
-                    <input id="id" name="id" type="text"  size="4" readonly="true" value=""/>
-                    <input id="nombre" name="nombre" type="text" required="true" value=""/>
-                    <input id="edad" name="edad" type="number" required="true"  size="4" value=""/>
-                    <input id="email" name="email" type="email" required="true" value=""/>
-                    <input id="password" name="password" type="password" required="true" value=""/>
+            <% for (Usuario usu : todosUsuarios) { %>
+                <form action="usuarios.do" method="post" name="form_<%= usu.getId() %>">                 
+                    <input id="id" name="id" type="text"  size="4" readonly="true" value="<%= usu.getId()%>"/>
+                    <input id="nombre" name="nombre" type="text" required="true" value="<%= usu.getNombre()%>"/>
+                    <input id="edad" name="edad" type="number" required="true"  size="4" value="<%= usu.getEdad()%>"/>
+                    <input id="email" name="email" type="email" required="true" value="<%= usu.getEmail()%>"/>
+                    <input id="password" name="password" type="password" required="true" value="<%= usu.getPassword()%>"/>
                     <input class="method" id="method" name="method" type="text" size="4" readonly="true" value="PUT"/>
                     
-                    <input type="submit" value="EDIT"/>
-                    <input type="submit" value="ELIM"/><br/>
+                    <input type="submit" value="EDIT" 
+                           onclick="Array.from(document.getElementsByClassName('method')).forEach((thisInput) => { thisInput.value='PUT'; })"/>
+                    <input type="submit" value="ELIM"                           
+                           onclick="Array.from(document.getElementsByClassName('method')).forEach((thisInput) => { thisInput.value='DELETE'; })"/><br/>
                 </form>
+                <% } %>
         </div>
     </body>
 </html>

@@ -53,6 +53,7 @@ public class UsuariosServlet extends HttpServlet {
         if (ServicioUsuarios.getInstancia().validarLoginUsuario(email, password)
                 == ServicioUsuarios.Resultado.Ok) {
             usuario = ServicioUsuarios.getInstancia().obtenerUno(email);
+            request.getSession().setAttribute("usuario", usuario);
             // Usuario se está loquendo bien; creamos y enviamos las cookies al navegador
             Cookie cookie_email = new Cookie("email", email);
             Cookie cookie_password = new Cookie("password", password);
@@ -81,6 +82,7 @@ public class UsuariosServlet extends HttpServlet {
                     break;
             }
         } else { // SIN Login
+            request.getSession().setAttribute("usuario", usuario);
             switch (request.getMethod()) {
                 case "POST":    // Es el registro, viene de registrarse.jsp
                     resultado = ServicioUsuarios.getInstancia().add(nom, edad, email, password);

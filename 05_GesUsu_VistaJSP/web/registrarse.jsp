@@ -9,7 +9,7 @@
     <body>
         <%@include file="header.jsp" %>
         <h1>Formulario JSP de registro</h1> 
-        <form name="form1" >
+        <form name="form1" method="post" action="./usuarios.do">
 
             <table border="1">
                 <tr><td>Nombre:</td><td>

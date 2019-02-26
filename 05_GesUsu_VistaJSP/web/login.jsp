@@ -13,9 +13,9 @@
         <form name="form1" method="get" action="./usuarios.do">
             <table border="1">
                <tr><td>Email</td><td>
-                       <input type="email" name="email" id="email" value=""/>  </td></tr> 
+                       <input type="email" name="email" id="email" value="<%= Utilidades.getCookie(request, "email") %>"/>  </td></tr> 
                 <tr><td>Contraseña</td><td>
-                    <input type="password" name="password" id="password" value=""/>  </td></tr> 
+                    <input type="password" name="password" id="password" value="<%= Utilidades.getCookie(request, "password") %>"/>  </td></tr> 
             </table>
             <input type="submit" value="Login"/>
         </form>
