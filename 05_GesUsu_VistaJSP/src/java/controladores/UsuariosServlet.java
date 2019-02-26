@@ -9,9 +9,11 @@ import modelo.logica.ServicioUsuarios;
 import util.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Usuario;
 
 /**
  *
@@ -38,6 +40,26 @@ public class UsuariosServlet extends HttpServlet {
         String edad = request.getParameter("edad");
         String p_email = request.getParameter("email");
         String p_password = request.getParameter("password");
+        
+        String ck_email = Utilidades.getCookie(request, "email");
+        String ck_password = Utilidades.getCookie(request, "password");
+        
+        // Seleccionar los campos login de los parámetros o de las cookies
+        String email = p_email != null && ! p_email.isEmpty() ? p_email : ck_email;
+        String password = p_password != null && ! p_password.isEmpty() 
+                ? p_password : ck_password;
+        
+        Usuario usuario = null;
+        if (ServicioUsuarios.getInstancia().validarLoginUsuario(email, password) 
+                == ServicioUsuarios.Resultado.Ok) {
+            usuario = ServicioUsuarios.getInstancia().obtenerUno(email);
+            // Usuario se está loquendo bien; creamos y enviamos las cookies al navegador
+            Cookie cookie_email = new Cookie("email", email);
+            Cookie cookie_password = new Cookie("password", password);
+            response.addCookie(cookie_email);
+            response.addCookie(cookie_password);
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
