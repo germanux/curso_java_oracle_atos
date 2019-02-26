@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+    <display-name>Usuarios Servlet</display-name>
+    <description>Usuarios Servlet</description>
+    <servlet>
+        <servlet-name>UsuariosServlet</servlet-name>
+        <servlet-class>controladores.UsuariosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsuariosServlet</servlet-name>
+        <url-pattern>/usuarios.do</url-pattern>
+    </servlet-mapping>
+</web-app>
