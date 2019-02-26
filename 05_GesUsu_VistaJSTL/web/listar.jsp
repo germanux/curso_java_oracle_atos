@@ -11,7 +11,7 @@
     <body>
         <%@include file="header.jsp" %>
         <h1>Todos los usuarios</h1>
-        <div border="2">            
+        <div border="2">
             <% for (Usuario usu : todosUsuarios) { %>
                 <form action="usuarios.do" method="post" name="form_<%= usu.getId() %>">                 
                     <input id="id" name="id" type="text"  size="4" readonly="true" value="<%= usu.getId()%>"/>
