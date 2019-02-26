@@ -61,21 +61,24 @@ public class UsuariosServlet extends HttpServlet {
             response.addCookie(cookie_password);
             switch (request.getMethod()) {
                 case "GET":
-                    if (email.isEmpty()) {  // Si no pide usuario, listamos todos
-                        request.getRequestDispatcher("listar.jsp").forward(request, response);
-                    } else {
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    }
+                    request.setAttribute("listaUsuarios", 
+                            ServicioUsuarios.getInstancia().obtenerTodos());
+                    request.getRequestDispatcher("listar.jsp").forward(request, response);
+                    
                     break;
                 case "POST":    // Simulación servicio web
                     String metodo = request.getParameter("method"); // Campo INPUT hidden
                     switch (metodo) {
                         case "PUT": // Modificar
                             ServicioUsuarios.getInstancia().modificar(id, nom, edad, email, password);
+                            request.setAttribute("listaUsuarios", 
+                                    ServicioUsuarios.getInstancia().obtenerTodos());
                             request.getRequestDispatcher("listar.jsp").forward(request, response);
                             break;
                         case "DELETE":
                             ServicioUsuarios.getInstancia().eliminar(email);
+                            request.setAttribute("listaUsuarios", 
+                                    ServicioUsuarios.getInstancia().obtenerTodos());
                             request.getRequestDispatcher("listar.jsp").forward(request, response);
                             break;
                     }

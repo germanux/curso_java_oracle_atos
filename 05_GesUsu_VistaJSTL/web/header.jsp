@@ -4,9 +4,7 @@
     Author     : IEUser
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="modelo.Usuario" %>
-<%@page import="modelo.logica.ServicioUsuarios" %>
-<%@page import="java.util.ArrayList" %>
+
 
 <h2>Aplicación Gestión MVC JSP</h2>
 <nav>
@@ -14,8 +12,10 @@
     <c:catch var="exepcion">        
         <jsp:useBean id="usuario" type="modelo.Usuario" scope="session">
             <jsp:getProperty property="*" name="usuario"/>
+            <jsp:getProperty property="id" name="usuario"/>
+            <jsp:getProperty property="email" name="usuario"/>
         </jsp:useBean>
-        <a href="listar.jsp">Listar</a>
+        <a href="usuarios.do">Listar</a>
         <a href="eliminar.jsp">Eliminar</a>
         <form action="usuarios.do" style="display: inline-block">
             <input id="email" name="email" type="hidden" value="LOGOUT"/>

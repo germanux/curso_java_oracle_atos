@@ -3,8 +3,9 @@
     Created on : 21-feb-2019, 20:45:25
     Author     : IEUser
 --%>
-
-<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Usuario" %>
+<%@page import="modelo.logica.ServicioUsuarios" %>
+<%@page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>

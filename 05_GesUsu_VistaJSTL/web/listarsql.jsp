@@ -12,6 +12,13 @@
 <html>
     <%= head() %>
     <body>
+        <!--
+        
+        
+            RECORDAR EN SQL DATASOURCE, QUE HAY QUE USAR EL ATRIBUTO sql="..."
+        
+        
+        -->
         <%@include file="header.jsp" %>
         <h1>Todos los usuarios</h1>
         <div border="2">
