@@ -127,7 +127,7 @@ public class DerbyDBUsuario implements IUsuarioDAO {
             String squery = "DELETE FROM usuario WHERE email=?";            
             PreparedStatement stmt = con.prepareStatement(squery);
             stmt.setString(1, email);
-            stmt.executeUpdate(squery);
+            stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
             return false;
@@ -147,7 +147,7 @@ public class DerbyDBUsuario implements IUsuarioDAO {
             stmt.setString(4, usuario.getPassword());
             stmt.setInt(5, usuario.getId());
             
-            stmt.executeUpdate(squery);
+            stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
             return false;
