@@ -5,7 +5,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <h2>Aplicación Gestión MVC JSP</h2>
 <nav>
     <a href="index.jsp">Inicio</a>
@@ -16,6 +15,7 @@
             <jsp:getProperty property="email" name="usuario"/>
         </jsp:useBean>
         <a href="usuarios.do">Listar</a>
+        <a href="listarsql.jsp">Listar SQL</a>
         <a href="eliminar.jsp">Eliminar</a>
         <form action="usuarios.do" style="display: inline-block">
             <input id="email" name="email" type="hidden" value="LOGOUT"/>

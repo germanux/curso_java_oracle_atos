@@ -4,25 +4,21 @@
     Author     : IEUser
 --%>
 <%@include file="head.jsp" %>
-<%--! ArrayList<Usuario> todosUsuarios; --%>
-<%-- todosUsuarios = ServicioUsuarios.getInstancia().obtenerTodos(); --%>
-<jsp:useBean id="listaUsuarios" type="java.util.ArrayList<Usuario>" scope="request">
-    <jsp:getProperty property="*" name="listaUsuarios"/>
-</jsp:useBean>
 <html>
     <%= head() %>
     <body>
-        <!--
-        
-        
-            RECORDAR EN SQL DATASOURCE, QUE HAY QUE USAR EL ATRIBUTO sql="..."
-        
-        
-        -->
+        <!--  RECORDAR EN SQL DATASOURCE, QUE HAY QUE USAR EL ATRIBUTO sql="..."-->
         <%@include file="header.jsp" %>
-        <h1>Todos los usuarios</h1>
+        <h1>Todos los usuarios SQL</h1>
+        <sql:setDataSource var="fuenteSQL" driver="org.apache.derby.jdbc.ClientDriver"
+                           url="jdbc:derby://localhost:1527/UsuariosDB"
+                           user="usuario" password="usuario"/>
+        <sql:query dataSource="${fuenteSQL}"  var="resultListUsu">
+            SELECT id, nombre, edad, email, password FROM Usuario
+        </sql:query>
+            <%--sql="SELECT id, nombre, edad, email, password FROM Usuario"--%>
         <div border="2">
-            <c:forEach items="${listaUsuarios}" var="usu">
+            <c:forEach items="${resultListUsu.rows}" var="usu">
                 <form action="usuarios.do" method="post" name="form_${usu.id}">                 
                     <input id="id" name="id" type="text"  size="4" readonly="true" value="${usu.id}"/>
                     <input id="nombre" name="nombre" type="text" required="true" value="${usu.nombre}"/>
