@@ -8,6 +8,7 @@ package modelo.logica;
 import java.util.ArrayList;
 import modelo.Usuario;
 import modelo.persistencia.DerbyDBUsuario;
+import modelo.persistencia.OracleDBUsuario;
 
 /**
  *
@@ -19,7 +20,7 @@ public class ServicioUsuarios {
     public enum Resultado { Ok, CamposMal, NoLogin, ErrorDB };
     private static final ServicioUsuarios instancia = new ServicioUsuarios();
     private ServicioUsuarios() {
-        persistencia = new DerbyDBUsuario();
+        persistencia = new OracleDBUsuario();
     }
     public static ServicioUsuarios getInstancia() {
         return instancia;
