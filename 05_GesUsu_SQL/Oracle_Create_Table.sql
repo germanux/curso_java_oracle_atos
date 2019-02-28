@@ -48,7 +48,8 @@ ALTER TABLE USUARIO ADD descripcion VARCHAR2(100) DEFAULT 'Un vago como todos';
 ALTER TABLE USUARIO DROP COLUMN fecha_registro;
 ALTER TABLE USUARIO ADD fecha_registro DATE DEFAULT SYSDATE;
 
-
+CREATE INDEX I_usuario_edad ON usuario(edad);
+CREATE INDEX I_usuario_nota ON usuario(nota);
 
 
 

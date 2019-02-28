@@ -34,6 +34,9 @@ SELECT * FROM usuario WHERE ROWNUM <= 5;
 /* Que nos devuelva la diferencia con respecto a la media de
 	los usuarios suspendido */
 
+SELECT Nombre, nota, (nota - (SELECT avg(nota) FROM usuario))
+	FROM usuario WHERE nota < 5;
+
 
 
 
