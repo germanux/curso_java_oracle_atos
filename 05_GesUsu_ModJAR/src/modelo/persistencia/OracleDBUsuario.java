@@ -19,6 +19,7 @@ public class OracleDBUsuario  extends BaseDBUsuario {
             this.conexionDB = Constantes.CONEX_ORACLE_DB;
             this.usuarioDB =  Constantes.USUARIO_ORACLE_DB;
             this.passwordDB = Constantes.PASSWD_ORACLE_DB;
+            this.tablaDB = "A_USUARIO";
         } catch (Exception ex) {
             Logger.getLogger(OracleDBUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
